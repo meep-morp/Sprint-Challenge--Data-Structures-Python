@@ -12,14 +12,28 @@ The get method returns all of the elements in the buffer in a list in their give
 It should not return any None values in the list even if they are present in the ring buffer.
 
 """
+from queue import Queue
 
 
 class RingBuffer:
     def __init__(self, capacity):
-        pass
+        self.capacity = capacity
+        self.stored = 0
+        self.storage = Queue()
 
     def append(self, item):
-        pass
+        # print(f"{self.stored} : {self.capacity}")
+        if self.stored >= self.capacity:
+            self.storage.dequeue()
+            self.storage.enqueue(item)
+        else:
+            self.storage.enqueue(item)
+            self.stored += 1
 
     def get(self):
-        pass
+        temp = self.storage
+        rtn = []
+        while len(temp) != 0:
+            rtn.append(temp.dequeue())
+
+        return rtn
