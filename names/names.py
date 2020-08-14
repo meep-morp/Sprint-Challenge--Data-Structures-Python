@@ -17,7 +17,7 @@ bst = BSTNode("")
 
 
 def printEach(node):
-    print(f"\n{node}\n")
+    print(f"{node},")
 
 # Replace the nested for loops below with your improvements
 # for name_1 in names_1:
@@ -41,3 +41,15 @@ print(f"runtime: {end_time - start_time} seconds")
 # Python has built-in tools that allow for a very efficient approach to this problem
 # What's the best time you can accomplish?  Thare are no restrictions on techniques or data
 # structures, but you may not import any additional libraries that you did not write yourself.
+start_time_s = time.time()
+stretch_names = set()
+dupes = set()
+for name in names_1:
+    stretch_names.add(name)
+for names in names_2:
+    if name in stretch_names:
+        dupes.add(name)
+
+print(f"{len(dupes)} duplicates:\n\n{', '.join(duplicates)}\n\n")
+end_time_s = time.time()
+print(f"runtime: {end_time_s - start_time_s} seconds")
